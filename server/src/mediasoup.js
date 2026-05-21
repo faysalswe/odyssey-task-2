@@ -1,13 +1,5 @@
 import mediasoup from 'mediasoup'
-
-function requireEnv(name) {
-  const value = process.env[name]
-  if (!value) {
-    console.error(`[config] Required environment variable "${name}" is not set. Exiting.`)
-    process.exit(1)
-  }
-  return value
-}
+import { requireEnv } from './env.js'
 
 /** @type {import('mediasoup').types.Worker | null} */
 let worker = null

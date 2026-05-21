@@ -1,15 +1,7 @@
 import express from 'express'
 import { createWorker } from './mediasoup.js'
 import healthRouter from './routes/health.js'
-
-function requireEnv(name) {
-  const value = process.env[name]
-  if (!value) {
-    console.error(`[config] Required environment variable "${name}" is not set. Exiting.`)
-    process.exit(1)
-  }
-  return value
-}
+import { requireEnv } from './env.js'
 
 const PORT = Number(requireEnv('SERVER_PORT'))
 
