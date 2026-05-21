@@ -1,0 +1,36 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #1a1a2e;
+  overflow: hidden;
+}
+
+.canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffffaa;
+  font-family: monospace;
+  font-size: 13px;
+  pointer-events: none;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+kbd {
+  background: #ffffff22;
+  border: 1px solid #ffffff44;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #fff;
+}
