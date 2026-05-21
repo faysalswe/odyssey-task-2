@@ -25,6 +25,40 @@
   align-items: center;
 }
 
+.zoomControl {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff11;
+  border: 1px solid #ffffff22;
+  border-radius: 8px;
+  padding: 6px 12px;
+  pointer-events: all;
+}
+
+.zoomLabel {
+  color: #ffffffaa;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.zoomSlider {
+  width: 120px;
+  accent-color: #9d4b4b;
+  cursor: pointer;
+}
+
+.zoomValue {
+  color: #ffffffcc;
+  font-family: monospace;
+  font-size: 12px;
+  min-width: 36px;
+  text-align: right;
+}
+
 kbd {
   background: #ffffff22;
   border: 1px solid #ffffff44;
