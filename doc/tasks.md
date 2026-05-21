@@ -50,18 +50,18 @@ Build a React + Three.js app with a walking GLB fox character, WASD controls, a 
 - [x] **D5** — Write `k8s/configmap.yaml` for environment config
 - [x] **D6** — Apply manifests: `kubectl apply -f k8s/`
 - [x] **D7** — Verify: `kubectl get pods` shows all pods in `Running` state
-- [ ] **D8** — Take screenshot of `kubectl get pods` output for submission
+- [x] **D8** — Take screenshot of `kubectl get pods` output for submission
 - [x] **D9** — Write a short note in `doc/udp-note.md` explaining the UDP port strategy
 
 ---
 
 ## Deliverables Checklist
 
-- [ ] GitHub repo with all source, Docker, and k8s files
+- [x] GitHub repo with all source, Docker, and k8s files
 - [x] `docker compose up --build` works end-to-end
 - [x] `http://localhost:3000/health` → 200 OK
 - [x] Fox avatar renders and walks in browser
-- [ ] `kubectl get pods` screenshot (all Running)
+- [x] `kubectl get pods` screenshot (all Running)
 - [x] `doc/udp-note.md` — UDP/mediasoup Kubernetes explanation
 
 ---
@@ -96,3 +96,14 @@ odyssey-task-2/
     ├── tasks.md        # this file
     └── udp-note.md     # Kubernetes UDP strategy explanation
 ```
+# Evaluation Criteria
+
+| Area | What we look for |
+|---|---|
+| **mediasoup integration** | Audio and video work correctly, no drops |
+| **Spatial audio** | Volume changes (attentuates) realistically with distance on the map |
+| **Map UI** | Circular arena clean, dots accurate, pulse when speaking |
+| **Code quality** | TypeScript, clean structure, no prop drilling |
+| **Docker** | Single-command startup, env-driven config, health check passes |
+| **Kubernetes** | Valid manifests, all pods Running, UDP handling explained |
+| **Three.js / GLB** | Character renders, animations switch correctly |

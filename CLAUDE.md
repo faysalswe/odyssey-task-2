@@ -108,7 +108,7 @@ src/components/Avatar/
 - All manifests in `k8s/` directory.
 - One resource per file; filename pattern: `<name>-<kind>.yaml` (e.g., `mediasoup-deployment.yaml`).
 - Namespace: `default` (local cluster, no need for a custom namespace).
-- All env config injected via `ConfigMap`; secrets via `Secret` (even for local, to demonstrate the pattern).
+- All env config injected via `ConfigMap`.
 - Resource requests and limits set on every container.
 - mediasoup UDP port strategy documented in `doc/udp-note.md`.
 
@@ -138,7 +138,6 @@ odyssey-task-2/
 │   └── Dockerfile
 ├── k8s/
 │   ├── configmap.yaml
-│   ├── secret.yaml
 │   ├── frontend-deployment.yaml
 │   ├── frontend-service.yaml
 │   ├── mediasoup-deployment.yaml
