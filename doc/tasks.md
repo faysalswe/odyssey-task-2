@@ -58,11 +58,11 @@ Build a React + Three.js app with a walking GLB fox character, WASD controls, a 
 ## Deliverables Checklist
 
 - [ ] GitHub repo with all source, Docker, and k8s files
-- [ ] `docker compose up --build` works end-to-end
-- [ ] `http://localhost:3000/health` → 200 OK
+- [x] `docker compose up --build` works end-to-end
+- [x] `http://localhost:3000/health` → 200 OK
 - [x] Fox avatar renders and walks in browser
 - [ ] `kubectl get pods` screenshot (all Running)
-- [ ] `doc/udp-note.md` — UDP/mediasoup Kubernetes explanation
+- [x] `doc/udp-note.md` — UDP/mediasoup Kubernetes explanation
 
 ---
 

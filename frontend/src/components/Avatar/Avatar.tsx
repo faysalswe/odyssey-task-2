@@ -1,17 +1,18 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
 import { ANIMATION_IDLE, ANIMATION_WALK, WALK_SPEED } from '../../constants/animations'
+import { MAP_WORLD_EXTENT } from '../../constants/minimap'
 import { useKeyboard } from '../../hooks/useKeyboard'
 
 interface AvatarProps {
-  onPositionChange: (x: number, z: number) => void
+  posRef: React.MutableRefObject<{ x: number; z: number }>
 }
 
-const GLB_PATH = '/assets/Fox.glb'
+const GLB_PATH = '/assets/fox.glb'
 
-export function Avatar({ onPositionChange }: AvatarProps) {
+export function Avatar({ posRef }: AvatarProps) {
   const group = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF(GLB_PATH)
   const { actions, mixer } = useAnimations(animations, group)
@@ -59,7 +60,10 @@ export function Avatar({ onPositionChange }: AvatarProps) {
     velocity.current.copy(dir).multiplyScalar(WALK_SPEED * delta)
     group.current.position.add(velocity.current)
 
-    onPositionChange(group.current.position.x, group.current.position.z)
+    group.current.position.x = THREE.MathUtils.clamp(group.current.position.x, -MAP_WORLD_EXTENT, MAP_WORLD_EXTENT)
+    group.current.position.z = THREE.MathUtils.clamp(group.current.position.z, -MAP_WORLD_EXTENT, MAP_WORLD_EXTENT)
+
+    posRef.current = { x: group.current.position.x, z: group.current.position.z }
   })
 
   // Suppress unused variable warning — mixer is managed by useAnimations internally

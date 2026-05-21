@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Grid } from '@react-three/drei'
 import { Avatar } from '../Avatar/Avatar'
@@ -6,11 +6,7 @@ import { MiniMap } from '../MiniMap/MiniMap'
 import styles from './Scene.module.css'
 
 export function Scene() {
-  const [avatarPos, setAvatarPos] = useState<{ x: number; z: number }>({ x: 0, z: 0 })
-
-  const handlePositionChange = useCallback((x: number, z: number) => {
-    setAvatarPos({ x, z })
-  }, [])
+  const posRef = useRef<{ x: number; z: number }>({ x: 0, z: 0 })
 
   return (
     <div className={styles.container}>
@@ -47,13 +43,13 @@ export function Scene() {
         </mesh>
 
         {/* Avatar */}
-        <Avatar onPositionChange={handlePositionChange} />
+        <Avatar posRef={posRef} />
 
         {/* Camera helper — disabled in prod; keeps orbit for development viewing */}
         <OrbitControls makeDefault enablePan={false} maxPolarAngle={Math.PI / 2.2} />
       </Canvas>
 
-      <MiniMap x={avatarPos.x} z={avatarPos.z} />
+      <MiniMap posRef={posRef} />
 
       <div className={styles.controls}>
         <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move
