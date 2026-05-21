@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { MAP_SIZE, MAP_WORLD_EXTENT, DOT_RADIUS, GRID_DIVISIONS, TRAIL_MAX_POINTS } from '../../constants/minimap'
 import styles from './MiniMap.module.css'
 
 interface MiniMapProps {
-  posRef: React.MutableRefObject<{ x: number; z: number }>
+  posRef: { current: { x: number; z: number } }
 }
 
 const SCALE = MAP_SIZE / (MAP_WORLD_EXTENT * 2)

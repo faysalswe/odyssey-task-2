@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import type { RefObject } from 'react'
 
 interface KeyState {
   forward: boolean
@@ -18,7 +19,7 @@ const KEY_MAP: Record<string, keyof KeyState> = {
   ArrowRight: 'right',
 }
 
-export function useKeyboard(): React.RefObject<KeyState> {
+export function useKeyboard(): RefObject<KeyState> {
   const keys = useRef<KeyState>({
     forward: false,
     backward: false,

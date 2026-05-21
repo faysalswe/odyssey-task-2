@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import * as THREE from 'three'
@@ -7,7 +7,7 @@ import { MAP_WORLD_EXTENT } from '../../constants/minimap'
 import { useKeyboard } from '../../hooks/useKeyboard'
 
 interface AvatarProps {
-  posRef: React.MutableRefObject<{ x: number; z: number }>
+  posRef: { current: { x: number; z: number } }
 }
 
 const GLB_PATH = '/assets/fox.glb'
@@ -15,7 +15,7 @@ const GLB_PATH = '/assets/fox.glb'
 export function Avatar({ posRef }: AvatarProps) {
   const group = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF(GLB_PATH)
-  const { actions, mixer } = useAnimations(animations, group)
+  const { actions } = useAnimations(animations, group)
   const keys = useKeyboard()
   const currentAction = useRef<string>(ANIMATION_IDLE)
   const velocity = useRef(new THREE.Vector3())
@@ -51,10 +51,8 @@ export function Avatar({ posRef }: AvatarProps) {
     dir.normalize()
 
     // Rotate character to face direction of travel
-    if (dir.lengthSq() > 0) {
-      const targetAngle = Math.atan2(dir.x, dir.z)
-      group.current.rotation.y = targetAngle
-    }
+    const targetAngle = Math.atan2(dir.x, dir.z)
+    group.current.rotation.y = targetAngle
 
     // Move
     velocity.current.copy(dir).multiplyScalar(WALK_SPEED * delta)
@@ -65,9 +63,6 @@ export function Avatar({ posRef }: AvatarProps) {
 
     posRef.current = { x: group.current.position.x, z: group.current.position.z }
   })
-
-  // Suppress unused variable warning — mixer is managed by useAnimations internally
-  void mixer
 
   return <primitive ref={group} object={scene} />
 }
