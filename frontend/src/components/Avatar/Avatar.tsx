@@ -9,7 +9,7 @@ interface AvatarProps {
   onPositionChange: (x: number, z: number) => void
 }
 
-const GLB_PATH = '/assets/fox.glb'
+const GLB_PATH = '/assets/Fox.glb'
 
 export function Avatar({ onPositionChange }: AvatarProps) {
   const group = useRef<THREE.Group>(null)
